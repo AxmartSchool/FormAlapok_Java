@@ -33,6 +33,11 @@ public class KezdoForm extends javax.swing.JFrame {
         btnAtvalt = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtFPerc = new javax.swing.JTextField();
+        cbGyumolcs = new javax.swing.JComboBox<>();
+        txtFIndexMutat = new javax.swing.JTextField();
+        txtFItemMutat = new javax.swing.JTextField();
+        cbEvszamok = new javax.swing.JComboBox<>();
+        btnFeltolt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -65,6 +70,20 @@ public class KezdoForm extends javax.swing.JFrame {
 
         jLabel4.setText("Perc:");
 
+        cbGyumolcs.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alma", "Korte", "Szilva" }));
+        cbGyumolcs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbGyumolcsActionPerformed(evt);
+            }
+        });
+
+        btnFeltolt.setText("Feltolt");
+        btnFeltolt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFeltoltActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -72,7 +91,7 @@ public class KezdoForm extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(lblUdvozlet)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 424, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -83,12 +102,23 @@ public class KezdoForm extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel3))
                 .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtFOra, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                    .addComponent(txtFPerc))
-                .addGap(29, 29, 29)
-                .addComponent(btnAtvalt, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbGyumolcs, 0, 113, Short.MAX_VALUE)
+                            .addComponent(txtFOra)
+                            .addComponent(txtFPerc))
+                        .addGap(29, 29, 29)
+                        .addComponent(btnAtvalt, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtFIndexMutat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                            .addComponent(txtFItemMutat, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(106, 106, 106)
+                        .addComponent(cbEvszamok, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(btnFeltolt)))
+                .addContainerGap(270, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,7 +139,16 @@ public class KezdoForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtFPerc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(371, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addComponent(cbGyumolcs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtFIndexMutat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFItemMutat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbEvszamok, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFeltolt))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
 
         pack();
@@ -126,6 +165,28 @@ public class KezdoForm extends javax.swing.JFrame {
         txtFPerc.setText(Integer.toString(perc));
         System.out.println("Hello Hello");
     }//GEN-LAST:event_btnAtvaltActionPerformed
+
+    private void cbGyumolcsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbGyumolcsActionPerformed
+        // TODO add your handling code here:
+        
+        int index = cbGyumolcs.getSelectedIndex();
+        String elem = cbGyumolcs.getSelectedItem().toString();
+        txtFIndexMutat.setText(Integer.toString(index));
+        txtFItemMutat.setText(elem);
+        
+        
+    }//GEN-LAST:event_cbGyumolcsActionPerformed
+
+    private void btnFeltoltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeltoltActionPerformed
+        // TODO add your handling code here:
+        
+        for (int i = 1995; i <= 2020; i++) {
+            
+            cbEvszamok.addItem(Integer.toString(i));
+            
+        }
+        
+    }//GEN-LAST:event_btnFeltoltActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,11 +225,16 @@ public class KezdoForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtvalt;
+    private javax.swing.JButton btnFeltolt;
+    private javax.swing.JComboBox<String> cbEvszamok;
+    private javax.swing.JComboBox<String> cbGyumolcs;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel lblUdvozlet;
+    private javax.swing.JTextField txtFIndexMutat;
+    private javax.swing.JTextField txtFItemMutat;
     private javax.swing.JTextField txtFOra;
     private javax.swing.JTextField txtFPerc;
     // End of variables declaration//GEN-END:variables
